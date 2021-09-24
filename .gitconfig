@@ -1,0 +1,24 @@
+[core]
+	editor = \"C:\\Users\\ghdck\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\" --wait
+	autocrlf = true
+[user]
+	name = joorani
+	email = shinerani16@gmail.com
+[diff]
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+  tool = vscode
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+
+[alias]
+	hist = log --graph --all --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(white)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --date=short
+[mergetool]
+	keepBackup = false
+[difftool "sourcetree"]
+	cmd = '' \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = true
