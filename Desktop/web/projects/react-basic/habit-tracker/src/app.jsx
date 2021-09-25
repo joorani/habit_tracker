@@ -14,17 +14,23 @@ class App extends Component {
   };
 
   handleIncrement = habit => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count++;
+    const habits = this.state.habits.map(item => {
+      if (item.id === habit.id) {
+        return { ...habit, count: habit.count + 1 };
+      }
+      return item;
+    });
     this.setState({ habits });
   };
 
   handleDecrement = habit => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    const count = habits[index].count - 1;
-    habits[index].count = count < 0 ? 0 : count;
+    const habits = this.state.habits.map(item => {
+      if (item.id === habit.id) {
+        const count = habit.count - 1;
+        return { ...habit, count: count < 0 ? 0 : count };
+      }
+      return item;
+    });
     this.setState({ habits });
   };
 
@@ -34,13 +40,16 @@ class App extends Component {
   };
 
   handleAdd = name => {
+    console.log('add');
     const habits = [...this.state.habits, { id: Date.now(), name, count: 0 }];
     this.setState({ habits });
   };
 
   handleReset = () => {
     const habits = this.state.habits.map(habit => {
-      habit.count = 0;
+      if (habit.count !== 0) {
+        return { ...habit, count: 0 };
+      }
       return habit;
     });
     this.setState({ habits });
@@ -48,7 +57,7 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <div>
         <Navbar
           totalCount={this.state.habits.filter(item => item.count > 0).length}
         />
@@ -60,7 +69,7 @@ class App extends Component {
           onAdd={this.handleAdd}
           onReset={this.handleReset}
         />
-      </>
+      </div>
     );
   }
 }
