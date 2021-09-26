@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const SimpleHabit = props => {
   const [count, setCount] = useState(0);
 
-  handleIncrement = () => {
+  const handleIncrement = () => {
     setCount(count + 1);
   };
 
